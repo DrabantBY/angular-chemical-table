@@ -1,16 +1,22 @@
-import { Component, signal } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { PeriodicElement } from "@models/periodic-element.type";
-import { ELEMENT_DATA } from "./consts/element-data.const";
 import { PeriodicalTableComponent } from "./components/periodical-table/periodical-table.component";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { PeriodicElementService } from "./services/periodic-element.service";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 @Component({
 	selector: "app-root",
 	standalone: true,
-	imports: [RouterOutlet, PeriodicalTableComponent],
+	imports: [RouterOutlet, PeriodicalTableComponent, MatProgressSpinner],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.css",
 })
 export class AppComponent {
-	periodicElements = signal<PeriodicElement[]>(ELEMENT_DATA);
+	private readonly periodicElementService = inject(PeriodicElementService);
+
+	periodicElements = toSignal(
+		this.periodicElementService.loadPeriodicElements(),
+		{ initialValue: [] }
+	);
 }

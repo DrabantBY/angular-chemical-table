@@ -1,6 +1,6 @@
 import { PeriodicElementKeys } from "./../../models/periodic-element.type";
 import { PeriodicElement } from "@models/periodic-element.type";
-import { Component, computed, input } from "@angular/core";
+import { Component, input } from "@angular/core";
 import { periodicalTableImports } from "./periodical-table.config";
 
 @Component({

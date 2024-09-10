@@ -1,1 +1,5 @@
+@if(periodicElements().length) {
 <app-periodical-table [periodicElements]="periodicElements()" />
+} @else {
+<mat-spinner />
+}

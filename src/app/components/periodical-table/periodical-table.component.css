@@ -1,3 +1,10 @@
 .mat-mdc-table {
 	min-width: 40rem;
 }
+
+.empty {
+	text-align: center;
+	font-weight: 500;
+	padding-block: 1rem;
+	font-size: 1.25rem;
+}

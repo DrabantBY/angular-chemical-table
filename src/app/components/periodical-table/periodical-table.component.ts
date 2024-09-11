@@ -1,7 +1,7 @@
-import { PeriodicElementKeys } from "./../../models/periodic-element.type";
 import { PeriodicElement } from "@models/periodic-element.type";
 import { Component, input } from "@angular/core";
 import { periodicalTableImports } from "./periodical-table.config";
+import { ELEMENT_DATA_KEY } from "@consts/element-data.const";
 
 @Component({
 	selector: "app-periodical-table",
@@ -11,7 +11,7 @@ import { periodicalTableImports } from "./periodical-table.config";
 	styleUrl: "./periodical-table.component.css",
 })
 export class PeriodicalTableComponent {
-	periodicElements = input.required<PeriodicElement[]>();
+	readonly periodicElements = input.required<PeriodicElement[]>();
 
-	headers: PeriodicElementKeys[] = ["position", "name", "weight", "symbol"];
+	readonly headers = ELEMENT_DATA_KEY;
 }

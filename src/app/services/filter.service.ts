@@ -10,7 +10,8 @@ export class FilterService {
 	private readonly searchValue = signal<string>("");
 
 	readonly search = toSignal(
-		toObservable(this.searchValue).pipe(debounceTime(DELAY_TIME))
+		toObservable(this.searchValue).pipe(debounceTime(DELAY_TIME)),
+		{ initialValue: "" }
 	);
 
 	setSearchValue(value: string): void {

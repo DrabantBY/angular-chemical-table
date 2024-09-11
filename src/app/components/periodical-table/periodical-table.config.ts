@@ -9,6 +9,7 @@ import {
 	MatHeaderRowDef,
 	MatRow,
 	MatRowDef,
+	MatNoDataRow,
 } from "@angular/material/table";
 
 export const periodicalTableImports = [
@@ -22,4 +23,5 @@ export const periodicalTableImports = [
 	MatHeaderRowDef,
 	MatRow,
 	MatRowDef,
+	MatNoDataRow,
 ];

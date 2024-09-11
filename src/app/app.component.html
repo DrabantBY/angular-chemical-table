@@ -1,6 +1,6 @@
-@if(periodicElements().length) {
-<app-search />
-<app-periodical-table [periodicElements]="periodicElements()" />
-} @else {
+@if(isNoElements()) {
 <mat-spinner />
+} @else {
+<app-search />
+<app-periodical-table [periodicElements]="searchedElements()" />
 }

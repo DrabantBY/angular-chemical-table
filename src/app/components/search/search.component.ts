@@ -13,6 +13,6 @@ export class SearchComponent {
 	private readonly filterService = inject(FilterService);
 
 	onChange(value: string): void {
-		this.filterService.setSearchValue(value);
+		this.filterService.setSearchValue(value.trim());
 	}
 }

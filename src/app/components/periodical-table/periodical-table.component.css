@@ -2,9 +2,19 @@
 	min-width: 40rem;
 }
 
+.mat-mdc-header-cell {
+	text-align: center;
+	text-transform: uppercase;
+}
+
 .empty {
 	text-align: center;
 	font-weight: 500;
 	padding-block: 1rem;
 	font-size: 1.25rem;
+}
+
+.btn {
+	width: 100%;
+	border-radius: 0.25rem;
 }

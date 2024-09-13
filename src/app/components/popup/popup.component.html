@@ -1,0 +1,16 @@
+<h6 mat-dialog-title>Edit value</h6>
+<mat-dialog-content>
+	<mat-form-field appearance="outline" subscriptSizing="dynamic">
+		<input matInput type="text" [(ngModel)]="currentValue" />
+		<mat-icon matPrefix>edit</mat-icon>
+	</mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button type="button" mat-icon-button mat-dialog-close>
+		<mat-icon> close </mat-icon>
+	</button>
+
+	<button type="button" mat-icon-button (click)="onClick()">
+		<mat-icon> checked </mat-icon>
+	</button>
+</mat-dialog-actions>

@@ -3,7 +3,7 @@ import { RouterOutlet } from "@angular/router";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { PeriodicalTableComponent } from "./components/periodical-table/periodical-table.component";
 import { SearchComponent } from "./components/search/search.component";
-import { PeriodicElementService } from "./services/periodic-element.service";
+import { ElementService } from "./services/element.service";
 import { FilterService } from "./services/filter.service";
 import { filterBySearch } from "./utils/filterBySearch.util";
 
@@ -20,16 +20,16 @@ import { filterBySearch } from "./utils/filterBySearch.util";
 	styleUrl: "./app.component.css",
 })
 export class AppComponent {
-	private readonly periodicElementService = inject(PeriodicElementService);
+	private readonly elementService = inject(ElementService);
 	private readonly filterService = inject(FilterService);
 
 	readonly isNoElements = computed(
-		() => this.periodicElementService.elements().length === 0
+		() => this.elementService.periodicalElements()().length === 0
 	);
 
-	searchedElements = computed(() =>
+	readonly searchedElements = computed(() =>
 		filterBySearch(
-			this.periodicElementService.elements(),
+			this.elementService.periodicalElements()(),
 			this.filterService.search()
 		)
 	);

@@ -23,7 +23,8 @@
 		"baseUrl": "./",
 		"paths": {
 			"@models/*": ["./src/app/models/*"],
-			"@consts/*": ["./src/app/consts/*"]
+			"@consts/*": ["./src/app/consts/*"],
+			"@services/*": ["./src/app/services/*"]
 		}
 	},
 	"angularCompilerOptions": {

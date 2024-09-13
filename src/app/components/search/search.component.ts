@@ -1,6 +1,6 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { FilterService } from "@services/filter.service";
 import { searchImports } from "./search.config";
-import { FilterService } from "src/app/services/filter.service";
 
 @Component({
 	selector: "app-search",

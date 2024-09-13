@@ -11,10 +11,9 @@ import {
 	MatRowDef,
 	MatNoDataRow,
 } from "@angular/material/table";
-
 import { MatButton } from "@angular/material/button";
 
-export const periodicalTableImports = [
+export const tableImports = [
 	MatButton,
 	MatTable,
 	MatHeaderCell,

@@ -1,6 +1,6 @@
-import { MatIcon } from "@angular/material/icon";
-import { MatFormField, MatInput, MatPrefix } from "@angular/material/input";
 import { FormsModule } from "@angular/forms";
+import { MatFormField, MatInput, MatPrefix } from "@angular/material/input";
+import { MatIcon } from "@angular/material/icon";
 
 export const searchImports = [
 	MatFormField,

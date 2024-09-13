@@ -1,18 +1,18 @@
-import { PeriodicElement } from "@models/periodic-element.type";
 import { Component, inject, input } from "@angular/core";
-import { periodicalTableImports } from "./periodical-table.config";
-import { ELEMENT_DATA_KEY } from "@consts/element-data.const";
 import { MatDialog } from "@angular/material/dialog";
+import { ELEMENT_DATA_KEY } from "@consts/element-data.const";
+import { PeriodicElement } from "@models/periodic-element.type";
 import { PopupComponent } from "../popup/popup.component";
+import { tableImports } from "./table.config";
 
 @Component({
-	selector: "app-periodical-table",
+	selector: "app-table",
 	standalone: true,
-	imports: periodicalTableImports,
-	templateUrl: "./periodical-table.component.html",
-	styleUrl: "./periodical-table.component.css",
+	imports: tableImports,
+	templateUrl: "./table.component.html",
+	styleUrl: "./table.component.css",
 })
-export class PeriodicalTableComponent {
+export class TableComponent {
 	private readonly popup = inject(MatDialog);
 
 	readonly periodicElements = input.required<PeriodicElement[]>();

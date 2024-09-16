@@ -1,29 +1,29 @@
 import { Injectable, computed, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { delay, Observable, of } from "rxjs";
+import { delay, map, Observable, of } from "rxjs";
 import { updateElement } from "@utils/patchElement.util";
 import { ELEMENT_DATA } from "@consts/element-data.const";
 import { DELAY_TIME } from "@consts/delay-time.const";
-import { PeriodicElement } from "@models/periodic-element.type";
-import { PopupData } from "@models/popup-data.type";
+import { mapToTableElements } from "@utils/mapToTableElements";
+import { TableElement } from "@models/table-element.type";
 
 @Injectable({
 	providedIn: "root",
 })
 export class ElementService {
 	readonly periodicalElements = computed(() =>
-		signal<PeriodicElement[]>(this.elements())
+		signal<TableElement[]>(this.elements())
 	);
 
 	private readonly elements = toSignal(this.loadElements(), {
 		initialValue: [],
 	});
 
-	loadElements(): Observable<PeriodicElement[]> {
-		return of(ELEMENT_DATA).pipe(delay(DELAY_TIME));
+	loadElements(): Observable<TableElement[]> {
+		return of(ELEMENT_DATA).pipe(delay(DELAY_TIME), map(mapToTableElements));
 	}
 
-	patchElements(value: PopupData): void {
+	patchElements(value: TableElement): void {
 		this.periodicalElements().update((prev) => updateElement(prev, value));
 	}
 }

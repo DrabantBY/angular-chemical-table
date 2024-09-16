@@ -1,8 +1,10 @@
 import { Component, inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { FormBuilder } from "@angular/forms";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ElementService } from "@services/element.service";
-import { PopupData } from "@models/popup-data.type";
 import { popupImports } from "./popup.config";
+import { TableElement } from "@models/table-element.type";
+import { ELEMENT_KEY } from "@consts/element-key.const";
 
 @Component({
 	selector: "app-popup",
@@ -12,17 +14,19 @@ import { popupImports } from "./popup.config";
 	styleUrl: "./popup.component.css",
 })
 export class PopupComponent {
-	private readonly dialogRef = inject(MatDialogRef<PopupComponent>);
+	private readonly formBuilder = inject(FormBuilder);
 
 	private readonly elementService = inject(ElementService);
 
-	private readonly data = inject<PopupData>(MAT_DIALOG_DATA);
+	private readonly data = inject<TableElement>(MAT_DIALOG_DATA);
 
-	currentValue = this.data.value;
+	readonly headers = ELEMENT_KEY;
 
-	onClick(): void {
-		const newData = { ...this.data, value: this.currentValue };
-		this.elementService.patchElements(newData);
-		this.dialogRef.close();
+	readonly formElement = this.formBuilder.group({
+		...this.data,
+	});
+
+	onSubmit(): void {
+		this.elementService.patchElements(this.formElement.value as TableElement);
 	}
 }

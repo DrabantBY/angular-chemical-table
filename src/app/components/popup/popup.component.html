@@ -1,18 +1,23 @@
 <h6 mat-dialog-title>Edit value</h6>
 
 <mat-dialog-content>
-	<mat-form-field appearance="outline" subscriptSizing="dynamic">
-		<input matInput type="text" [(ngModel)]="currentValue" />
-		<mat-icon matPrefix>edit</mat-icon>
-	</mat-form-field>
+	<form class="form" [formGroup]="formElement" (ngSubmit)="onSubmit()">
+		@for(header of headers; track header) {
+		<mat-form-field appearance="outline" subscriptSizing="dynamic">
+			<mat-label>
+				{{ header }}
+			</mat-label>
+			<input matInput type="text" [formControlName]="header" [name]="header" />
+		</mat-form-field>
+		}
+
+		<div class="form-controls">
+			<button mat-button type="button" mat-icon-button mat-dialog-close>
+				close
+			</button>
+			<button mat-button type="submit" mat-icon-button mat-dialog-close>
+				edit
+			</button>
+		</div>
+	</form>
 </mat-dialog-content>
-
-<mat-dialog-actions>
-	<button type="button" mat-icon-button mat-dialog-close>
-		<mat-icon> close </mat-icon>
-	</button>
-
-	<button type="button" mat-icon-button (click)="onClick()">
-		<mat-icon> checked </mat-icon>
-	</button>
-</mat-dialog-actions>

@@ -1,9 +1,9 @@
-import { Component, inject, input } from "@angular/core";
+import { Component, computed, inject, input } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { ELEMENT_DATA_KEY } from "@consts/element-data.const";
-import { PeriodicElement } from "@models/periodic-element.type";
 import { PopupComponent } from "../popup/popup.component";
 import { tableImports } from "./table.config";
+import { TableElement } from "@models/table-element.type";
+import { ELEMENT_KEY } from "@consts/element-key.const";
 
 @Component({
 	selector: "app-table",
@@ -15,12 +15,11 @@ import { tableImports } from "./table.config";
 export class TableComponent {
 	private readonly popup = inject(MatDialog);
 
-	readonly periodicElements = input.required<PeriodicElement[]>();
+	readonly periodicElements = input.required<TableElement[]>();
 
-	readonly headers = ELEMENT_DATA_KEY;
+	readonly headers = ELEMENT_KEY;
 
-	onClick(key: string, value: string | number, id: number): void {
-		const data = { id, key, value };
+	onClick(data: TableElement): void {
 		this.popup.open(PopupComponent, { data });
 	}
 }

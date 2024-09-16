@@ -1,10 +1,9 @@
-import { PeriodicElement } from "@models/periodic-element.type";
-import { PopupData } from "@models/popup-data.type";
+import { TableElement } from "@models/table-element.type";
 
 export const updateElement = (
-	elements: PeriodicElement[],
-	{ id, key, value }: PopupData
-): PeriodicElement[] =>
+	elements: TableElement[],
+	newElement: TableElement
+): TableElement[] =>
 	elements.map((element) =>
-		element.id === id ? { ...element, [key]: value } : element
+		element.id === newElement.id ? newElement : element
 	);

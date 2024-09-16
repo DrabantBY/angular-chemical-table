@@ -1,4 +1,4 @@
-# angular-chemical-table
+# [angular-chemical-table](https://drabantby.github.io/angular-chemical-table/)
 
 - [ ] Przygotuj widok wyświetlający tabelę pierwiastków (kolumny Number, Name, Weight, Symbol).
 - [ ] Zasymuluj pobieranie danych do tabeli podczas startu aplikacji.

@@ -1,9 +1,5 @@
-export type PeriodicElement = {
-	id: number;
-	position: number;
-	name: string;
-	weight: number;
-	symbol: string;
-};
+import { ElementType } from "./element.type";
 
-export type PeriodicElementKeys = keyof PeriodicElement;
+export type PeriodicElement = ElementType & {
+	position: number;
+};

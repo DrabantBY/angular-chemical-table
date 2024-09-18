@@ -12,8 +12,8 @@ import { elementsImports } from "./elements.config";
 export class ElementsComponent {
 	private readonly elementService = inject(ElementService);
 
-	readonly elements = this.elementService.state.signal("elements");
 	readonly loading = this.elementService.state.signal("loading");
+	readonly searchedElements = this.elementService.searchedElements;
 
 	// private readonly filterService = inject(FilterService);
 

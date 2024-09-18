@@ -1,6 +1,9 @@
 import { Component, inject } from "@angular/core";
-import { FilterService } from "@services/filter.service";
+import { FormControl } from "@angular/forms";
+import { debounceTime, map } from "rxjs";
+import { ElementService } from "@services/element.service";
 import { searchImports } from "./search.config";
+import { DELAY_TIME } from "@consts/delay-time.const";
 
 @Component({
 	selector: "app-search",
@@ -10,9 +13,17 @@ import { searchImports } from "./search.config";
 	styleUrl: "./search.component.css",
 })
 export class SearchComponent {
-	private readonly filterService = inject(FilterService);
+	private readonly elementService = inject(ElementService);
 
-	onChange(value: string): void {
-		this.filterService.setSearchValue(value.trim());
+	readonly searchInput = new FormControl<string>("");
+
+	constructor() {
+		this.elementService.state.connect(
+			"search",
+			this.searchInput.valueChanges.pipe(
+				debounceTime(DELAY_TIME),
+				map((value) => (value ? value.trim() : value))
+			)
+		);
 	}
 }

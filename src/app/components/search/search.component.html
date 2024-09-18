@@ -1,4 +1,4 @@
 <mat-form-field appearance="outline" subscriptSizing="dynamic">
-	<input matInput type="text" ngModel (ngModelChange)="onChange($event)" />
+	<input matInput type="text" [formControl]="searchInput" />
 	<mat-icon matPrefix>search</mat-icon>
 </mat-form-field>

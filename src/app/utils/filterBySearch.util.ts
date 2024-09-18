@@ -1,11 +1,10 @@
-import { PeriodicElement } from "@models/periodic-element.type";
 import { TableElement } from "@models/table-element.type";
 
 export const filterBySearch = (
 	elements: TableElement[],
-	searchValue: string
+	search: string | null
 ): TableElement[] => {
-	if (!searchValue) {
+	if (!search) {
 		return elements;
 	}
 
@@ -13,7 +12,7 @@ export const filterBySearch = (
 		Object.values(element)
 			.slice(1)
 			.some((val) =>
-				val.toString().toLowerCase().includes(searchValue.toLowerCase())
+				val.toString().toLowerCase().includes(search.toLowerCase())
 			)
 	);
 };

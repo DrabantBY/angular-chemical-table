@@ -6,11 +6,12 @@ import { ELEMENT_DATA } from "@consts/element-data.const";
 import { DELAY_TIME } from "@consts/delay-time.const";
 import { TableElement } from "@models/table-element.type";
 import { TableState } from "@models/table-state.type";
+import { filterBySearch } from "@utils/filterBySearch.util";
 
 const initialState: TableState = {
 	elements: [],
 	loading: false,
-	filter: "",
+	search: null,
 };
 
 @Injectable({
@@ -31,4 +32,8 @@ export class ElementService {
 			)
 		);
 	});
+
+	readonly searchedElements = this.state.computed(({ elements, search }) =>
+		filterBySearch(elements(), search())
+	);
 }

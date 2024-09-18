@@ -33,6 +33,8 @@ export class ElementService {
 		);
 	});
 
+	readonly loading = this.state.signal("loading");
+
 	readonly searchedElements = this.state.computed(({ elements, search }) =>
 		filterBySearch(elements(), search())
 	);

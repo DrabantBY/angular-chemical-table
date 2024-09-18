@@ -1,8 +1,1 @@
-import { TableHeaders } from "@models/table-element.type";
-
-export const ELEMENT_KEY: TableHeaders[] = [
-	"number",
-	"name",
-	"weight",
-	"symbol",
-];
+export const ELEMENT_KEY = ["number", "name", "weight", "symbol"];

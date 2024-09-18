@@ -12,19 +12,7 @@ import { elementsImports } from "./elements.config";
 export class ElementsComponent {
 	private readonly elementService = inject(ElementService);
 
-	readonly loading = this.elementService.state.signal("loading");
+	readonly loading = this.elementService.loading;
+
 	readonly searchedElements = this.elementService.searchedElements;
-
-	// private readonly filterService = inject(FilterService);
-
-	// readonly isNoElements = computed(
-	// 	() => this.elementService.periodicalElements()().length === 0
-	// );
-
-	// readonly searchedElements = computed(() =>
-	// 	filterBySearch(
-	// 		this.elementService.periodicalElements()(),
-	// 		this.filterService.search()
-	// 	)
-	// );
 }

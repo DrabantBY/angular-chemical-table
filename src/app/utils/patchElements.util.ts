@@ -1,7 +1,8 @@
 import { TableElement } from "@models/table-element.type";
+import { TableState } from "@models/table-state.type";
 
-export const updateElement = (
-	elements: TableElement[],
+export const patchElements = (
+	{ elements }: TableState,
 	newElement: TableElement
 ): TableElement[] =>
 	elements.map((element) =>

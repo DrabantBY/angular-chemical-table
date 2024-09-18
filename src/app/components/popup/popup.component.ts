@@ -5,6 +5,8 @@ import { ElementService } from "@services/element.service";
 import { popupImports } from "./popup.config";
 import { TableElement } from "@models/table-element.type";
 import { ELEMENT_KEY } from "@consts/element-key.const";
+import { patchElements } from "@utils/patchElements.util";
+import { Observable } from "rxjs";
 
 @Component({
 	selector: "app-popup",
@@ -14,11 +16,11 @@ import { ELEMENT_KEY } from "@consts/element-key.const";
 	styleUrl: "./popup.component.css",
 })
 export class PopupComponent {
+	private readonly data = inject<TableElement>(MAT_DIALOG_DATA);
+
 	private readonly formBuilder = inject(FormBuilder);
 
 	private readonly elementService = inject(ElementService);
-
-	private readonly data = inject<TableElement>(MAT_DIALOG_DATA);
 
 	readonly headers = ELEMENT_KEY;
 
@@ -27,6 +29,9 @@ export class PopupComponent {
 	});
 
 	onSubmit(): void {
-		// this.elementService.patchElements(this.formElement.value as TableElement);
+		const element = this.formElement.value as TableElement;
+		this.elementService.state.set("elements", (state) =>
+			patchElements(state, element)
+		);
 	}
 }

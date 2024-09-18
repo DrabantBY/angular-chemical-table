@@ -27,6 +27,6 @@ export class PopupComponent {
 	});
 
 	onSubmit(): void {
-		this.elementService.patchElements(this.formElement.value as TableElement);
+		// this.elementService.patchElements(this.formElement.value as TableElement);
 	}
 }

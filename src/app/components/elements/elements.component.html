@@ -1,8 +1,7 @@
-@if(isNoElements()) {
+@if(loading()) {
 <mat-spinner />
 
 } @else {
-<app-search />
-
-<app-table [periodicElements]="searchedElements()" />
+<!-- <app-search /> -->
+<app-table [periodicElements]="elements()" />
 }

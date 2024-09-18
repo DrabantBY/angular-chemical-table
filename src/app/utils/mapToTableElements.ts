@@ -1,7 +1,8 @@
 import { PeriodicElement } from "@models/periodic-element.type";
+import { TableElement } from "@models/table-element.type";
 
-export const mapToTableElements = (elements: PeriodicElement[]) =>
-	elements.map(({ position, name, weight, symbol }) => ({
+export const mapToTableElements = (data: PeriodicElement[]): TableElement[] =>
+	data.map(({ position, name, weight, symbol }) => ({
 		id: position,
 		number: position,
 		name,

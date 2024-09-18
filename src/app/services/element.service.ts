@@ -1,29 +1,34 @@
-import { Injectable, computed, signal } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
-import { delay, map, Observable, of } from "rxjs";
-import { updateElement } from "@utils/patchElement.util";
+import { Injectable } from "@angular/core";
+import { rxState } from "@rx-angular/state";
+import { delay, endWith, map, Observable, of, startWith } from "rxjs";
+import { mapToTableElements } from "@utils/mapToTableElements";
 import { ELEMENT_DATA } from "@consts/element-data.const";
 import { DELAY_TIME } from "@consts/delay-time.const";
-import { mapToTableElements } from "@utils/mapToTableElements";
 import { TableElement } from "@models/table-element.type";
+import { TableState } from "@models/table-state.type";
+
+const initialState: TableState = {
+	elements: [],
+	loading: false,
+	filter: "",
+};
 
 @Injectable({
 	providedIn: "root",
 })
 export class ElementService {
-	readonly periodicalElements = computed(() =>
-		signal<TableElement[]>(this.elements())
-	);
-
-	private readonly elements = toSignal(this.loadElements(), {
-		initialValue: [],
-	});
-
-	loadElements(): Observable<TableElement[]> {
+	private loadElements(): Observable<TableElement[]> {
 		return of(ELEMENT_DATA).pipe(delay(DELAY_TIME), map(mapToTableElements));
 	}
 
-	patchElements(value: TableElement): void {
-		this.periodicalElements().update((prev) => updateElement(prev, value));
-	}
+	readonly state = rxState<TableState>(({ set, connect }) => {
+		set(initialState);
+		connect(
+			this.loadElements().pipe(
+				map((elements) => ({ elements })),
+				startWith({ loading: true }),
+				endWith({ loading: false })
+			)
+		);
+	});
 }
